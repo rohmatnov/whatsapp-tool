@@ -23,11 +23,11 @@ const popper = reactive({
 onMounted(() => {
   countries.value = Object.values(getCountryListMap());
 
-  fetch("http://ip-api.com/json")
+  fetch("https://ipinfo.io/?token=7f5897601c9f81")
     .then((res) => res.json())
-    .then(({ countryCode }) => {
-      country.value = getCountryListMap()[countryCode];
-      emit("countryCode", countryCode);
+    .then((data) => {
+      country.value = getCountryListMap()[data.country];
+      emit("countryCode", data.country);
     });
 
   popper.instance = createPopper(dropdownTrigger.value, dropdownPanel.value, {
