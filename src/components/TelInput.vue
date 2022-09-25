@@ -29,7 +29,7 @@ const phoneNumber = (number) => {
     uri: phone?.getURI() || null,
     type: phone?.getType() || "-",
     possible: phone?.isPossible() || false,
-    valid: phone?.isValid() || false,
+    valid: phone?.isValid() && phone?.nationalNumber == number,
     value: number,
   };
 
