@@ -104,28 +104,10 @@ const togglePanel = () => {
       parent.scroll({ top: offset });
       target.classList.add("bg-emerald-100", "dark:bg-emerald-900");
 
-      dropdownTrigger.value.classList.add(
-        "ring",
-        "ring-emerald-100",
-        "border-emerald-300",
-        "after:border-b-slate-700",
-        "after:-translate-y-full",
-        "dark:border-emerald-800",
-        "dark:ring-slate-800"
-      );
-      dropdownTrigger.value.classList.remove(
-        "after:border-t-slate-700",
-        "after:-translate-y-1/2"
-      );
+      dropdownTrigger.value.classList.add("btn-countries-show");
+      dropdownTrigger.value.classList.remove("btn-countries-hide");
     } else {
       resetTriggerStyle();
-      dropdownTrigger.value.classList.add(
-        "ring",
-        "ring-emerald-100",
-        "border-emerald-300",
-        "dark:border-emerald-800",
-        "dark:ring-slate-800"
-      );
     }
   });
 };
@@ -157,24 +139,15 @@ const highlight = (str) => {
 };
 
 const resetTriggerStyle = () => {
-  dropdownTrigger.value.classList.remove(
-    "ring",
-    "ring-emerald-300",
-    "border-emerald-300",
-    "after:border-b-slate-700",
-    "after:-translate-y-full",
-    "dark:border-emerald-800",
-    "dark:ring-slate-800"
-  );
-
-  dropdownTrigger.value.classList.add(
-    "after:border-t-slate-700",
-    "after:-translate-y-1/2"
-  );
+  dropdownTrigger.value.classList.remove("btn-countries-show");
+  dropdownTrigger.value.classList.add("btn-countries-hide");
 };
 
 document.addEventListener("click", (e) => {
-  const isClickOutside = !dropdownPanel.value.parentNode.contains(e.target);
+  const isClickOutside = !dropdownPanel.value
+    .closest("div.relative")
+    .contains(e.target);
+
   if (isClickOutside) {
     dropdownOpen.value = false;
     resetTriggerStyle();
@@ -187,13 +160,13 @@ document.addEventListener("click", (e) => {
     <button
       ref="dropdownTrigger"
       v-on:click="togglePanel"
-      class="py-2 pl-3 pr-5 rounded-l-lg border border-slate-200 items-center focus:outline-none after:content-[''] after:absolute after:border-4 after:border-transparent after:border-t-slate-700 after:top-1/2 after:-translate-y-1/2 after:right-2 dark:border-slate-700"
+      class="py-2 pl-3 pr-5 rounded-l-lg border border-slate-200 items-center focus:outline-none after:content-[''] after:absolute after:border-4 after:border-transparent after:top-1/2 after:right-2 dark:border-slate-700 btn-countries-hide"
       tabindex="-1"
     >
       <div class="flex">
         <img
           v-bind:src="toBaseImage(country.flag)"
-          alt=""
+          alt="flag"
           class="w-6 h-4 my-1 inline-block pointer-events-none"
         />
         <span class="inline-block ml-1.5 min-w-[16px] pointer-events-none">
@@ -248,3 +221,18 @@ document.addEventListener("click", (e) => {
     </div>
   </div>
 </template>
+
+<style lang="postcss">
+.btn-countries-show {
+  @apply ring ring-emerald-300 border-emerald-300;
+}
+.dark .btn-countries-show {
+  @apply border-emerald-800 ring-slate-800;
+}
+.btn-countries-show::after {
+  @apply border-b-slate-700 -translate-y-full;
+}
+.btn-countries-hide::after {
+  @apply border-t-slate-700 -translate-y-1/2;
+}
+</style>
