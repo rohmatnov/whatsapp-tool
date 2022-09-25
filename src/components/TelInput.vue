@@ -6,7 +6,7 @@ import DropdownCountry from "./DropdownCountry.vue";
 import getCountryListMap from "../modules/countries";
 
 const emit = defineEmits(["update:modelValue"]);
-const props = defineProps(["modelValue", "inputId"]);
+const props = defineProps(["modelValue"]);
 
 const country = ref({});
 const input = ref();
@@ -53,7 +53,6 @@ const countryCode = (code) => {
       maxlength="15"
       v-on:input="phoneNumber($event.target.value)"
       v-bind:value="modelValue?.value"
-      v-bind:id="inputId"
     />
   </div>
 </template>
