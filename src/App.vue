@@ -72,7 +72,7 @@ const toast = (msg) => {
       >
         <h1 class="text-2xl font-semibold mb-1">Whatsapp Tool</h1>
         <p class="text-sm text-slate-500">
-          Simple tool to start whatsapp chat without saving phone number
+          Simple tool for start WhatsApp chat without saving phone number
         </p>
         <SwitchMode class="absolute -top-2 right-0" />
       </div>
