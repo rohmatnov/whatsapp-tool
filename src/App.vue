@@ -123,8 +123,8 @@ const toast = (msg) => {
   </div>
 </template>
 
-<style>
+<style lang="postcss">
 .toastify.on {
-  opacity: 1;
+  @apply opacity-100;
 }
 </style>
