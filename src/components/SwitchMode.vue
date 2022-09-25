@@ -61,7 +61,9 @@ const defaultMode = () => {
 };
 
 document.addEventListener("click", (e) => {
-  const isClickOutside = !dropdownPanel.value.closest("div").contains(e.target);
+  const isClickOutside = !dropdownPanel.value
+    ?.closest("div")
+    .contains(e.target);
   if (isClickOutside) {
     dropdownOpen.value = false;
   }

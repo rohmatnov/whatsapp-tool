@@ -139,13 +139,13 @@ const highlight = (str) => {
 };
 
 const resetTriggerStyle = () => {
-  dropdownTrigger.value.classList.remove("btn-countries-show");
-  dropdownTrigger.value.classList.add("btn-countries-hide");
+  dropdownTrigger.value?.classList.remove("btn-countries-show");
+  dropdownTrigger.value?.classList.add("btn-countries-hide");
 };
 
 document.addEventListener("click", (e) => {
   const isClickOutside = !dropdownPanel.value
-    .closest("div.relative")
+    ?.closest("div.relative")
     .contains(e.target);
 
   if (isClickOutside) {
